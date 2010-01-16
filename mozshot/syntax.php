@@ -3,7 +3,7 @@
  * Plugin Mozshot: Inserts a website screenshot.
  * 
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * @author     Takao Yokoyama <wakataka423@gmail.com>
+ * @author     Takao Yokoyama <cb.yokoyama@gmail.com>
  */
 
 // must be run within DokuWiki
@@ -17,7 +17,7 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
 		return array(
 			'author' => 'Takao Yokoyama',
 			'email'  => 'cb.yokoyama@gmail.com',
-			'date'   => '2010-01-01',
+			'date'   => '2010-01-16',
 			'name'   => 'Mozshot Plugin',
 			'desc'   => 'Inserts a website screenshot',
 			'url'    => 'http://wakuteka.info/main/memo:informatics:dokuwiki:mozshot');
@@ -26,7 +26,7 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
 	var $pattern;
 	function syntax_plugin_mozshot(){
 		$this->html    = @file_get_contents(DOKU_PLUGIN.'mozshot/object.htm');
-		$this->pattern = '/\{\{(\s?)mozshot>(small|large|link):([^} |]+)\|?(.*?)(\s?)\}\}/';
+		$this->pattern = '/\{\{(\s?)mozshot>(small|large|normal):([^} |]+)\|?(.*?)(\s?)\}\}/';
 	}
 
   function getType() { return 'substition'; }
@@ -71,7 +71,7 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
 			if($align == 'center'){$renderer->doc .= "</center>";}
 			$renderer->doc.=NL;
 			return true;
-		default:
+		case 'normal':
 			if($align == 'center'){$renderer->doc .= "<center>";}
 			$renderer->doc.=sprintf("<a href='http://".$id."' target='_blank'><img src='http://mozshot.nemui.org/shot/120x90?http://"."$id' alt='".$id."'/></a>");
 			if($align == 'center'){$renderer->doc .= "</center>";}
