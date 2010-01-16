@@ -20,7 +20,7 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
 			'date'   => '2010-01-16',
 			'name'   => 'Mozshot Plugin',
 			'desc'   => 'Inserts a website screenshot',
-			'url'    => 'http://wakuteka.info/main/memo:informatics:dokuwiki:mozshot');
+			'url'    => 'http://wakuteka.info/main/dokuwiki:mozshot');
  	}
 	var $html;
 	var $pattern;
