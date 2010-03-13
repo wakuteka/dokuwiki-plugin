@@ -17,7 +17,7 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
 		return array(
 			'author' => 'Takao Yokoyama',
 			'email'  => 'cb.yokoyama@gmail.com',
-			'date'   => '2010-01-16',
+			'date'   => '2010-03-13',
 			'name'   => 'Mozshot Plugin',
 			'desc'   => 'Inserts a website screenshot',
 			'url'    => 'http://wakuteka.info/main/dokuwiki:mozshot');
@@ -38,7 +38,7 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
 		$left  = ($result[1][0] == " ");
 		$right = ($result[5][0] == " ");
 		$cmd   = $result[2][0];
-		$id    = $result[3][0];
+		$url    = $result[3][0];
 		$title = $result[4][0];
 		if ($left == true && $right == true){
 			$align = 'center';
@@ -47,31 +47,29 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
 		} else if($right == true){
 			$align = 'left';
 		}
-    return array($state, array($cmd,$id,$align,$title));
+    return array($state, array($cmd,$url,$align,$title));
   }
 
 	function render($mode, &$renderer, $data) {
 		if($mode != 'xhtml'){ return false;}
 	  list($state, $match) = $data;
-		list($cmd,$id,$align,$title) = $match;
-		$title = urlencode($title);
-		$title = str_replace("+"," ", $title);
+		list($cmd,$url,$align,$title) = $match;
 		switch($cmd) {
 		case 'small':
 			if($align == 'center'){$renderer->doc .= "<center>";}
-			$renderer->doc.=sprintf("<a href='http://".$id."' target='_blank'><img src='http://mozshot.nemui.org/shot/80x60?http://"."$id' alt='".$id."'/></a>");
+			$renderer->doc.=sprintf("<a href='".$url."' target='_blank'><img src='http://mozshot.nemui.org/shot/80x60?"."$url' alt='screenshot' title='".$title."'/></a>");
 			if($align == 'center'){$renderer->doc .= "</center>";}
 			$renderer->doc.=NL;
      return true;
 		case 'large':
 			if($align == 'center'){$renderer->doc .= "<center>";}
-			$renderer->doc.=sprintf("<a href='http://".$id."' target='_blank'><img src='http://mozshot.nemui.org/shot/200x150?"."$id' alt='".$id."'/></a>");
+			$renderer->doc.=sprintf("<a href='".$url."' target='_blank'><img src='http://mozshot.nemui.org/shot/200x150?"."$url' alt='screenshot' title='".$title."'/></a>");
 			if($align == 'center'){$renderer->doc .= "</center>";}
 			$renderer->doc.=NL;
 			return true;
 		default :
 			if($align == 'center'){$renderer->doc .= "<center>";}
-			$renderer->doc.=sprintf("<a href='http://".$id."' target='_blank'><img src='http://mozshot.nemui.org/shot/120x90?"."$id' alt='".$id."'/></a>");
+			$renderer->doc.=sprintf("<a href='".$url."' target='_blank'><img src='http://mozshot.nemui.org/shot/120x90?"."$url' alt='screenshot' title='".$title."'/></a>");
 			if($align == 'center'){$renderer->doc .= "</center>";}
 			$renderer->doc.=NL;
 			return true;
