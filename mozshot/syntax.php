@@ -24,7 +24,7 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
  	}
 	var $pattern;
 	function syntax_plugin_mozshot(){
-		$this->pattern = '/\{\{(\s?)mozshot>(small|large|normal):([^} |]+)\|?(.*?)(\s?)\}\}/'; /* TODO: match http:// */
+		$this->pattern = '/\{\{(\s?)mozshot>(small|large)?:?([^} |]+)\|?(.*?)(\s?)\}\}/'; /* TODO: match http:// */
 	}
 
   function getType() { return 'substition'; }
@@ -65,13 +65,13 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
      return true;
 		case 'large':
 			if($align == 'center'){$renderer->doc .= "<center>";}
-			$renderer->doc.=sprintf("<a href='http://".$id."' target='_blank'><img src='http://mozshot.nemui.org/shot/200x150?http://"."$id' alt='".$id."'/></a>");
+			$renderer->doc.=sprintf("<a href='http://".$id."' target='_blank'><img src='http://mozshot.nemui.org/shot/200x150?"."$id' alt='".$id."'/></a>");
 			if($align == 'center'){$renderer->doc .= "</center>";}
 			$renderer->doc.=NL;
 			return true;
-		case 'normal':
+		default :
 			if($align == 'center'){$renderer->doc .= "<center>";}
-			$renderer->doc.=sprintf("<a href='http://".$id."' target='_blank'><img src='http://mozshot.nemui.org/shot/120x90?http://"."$id' alt='".$id."'/></a>");
+			$renderer->doc.=sprintf("<a href='http://".$id."' target='_blank'><img src='http://mozshot.nemui.org/shot/120x90?"."$id' alt='".$id."'/></a>");
 			if($align == 'center'){$renderer->doc .= "</center>";}
 			$renderer->doc.=NL;
 			return true;
