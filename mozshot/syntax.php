@@ -20,11 +20,11 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
 			'date'   => '2010-03-13',
 			'name'   => 'Mozshot Plugin',
 			'desc'   => 'Inserts a website screenshot',
-			'url'    => 'http://wakuteka.info/main/dokuwiki:mozshot');
+			'url'    => 'http://dokuwiki.org/plugin:mozshot');
  	}
 	var $pattern;
 	function syntax_plugin_mozshot(){
-		$this->pattern = '/\{\{(\s?)mozshot>(small|large)?:?([^} |]+)\|?(.*?)(\s?)\}\}/'; /* TODO: match http:// */
+		$this->pattern = '/\{\{(\s?)mozshot>(small|large)?:?([^} |]+)\|?(.*?)(\s?)\}\}/'; 
 	}
 
   function getType() { return 'substition'; }
