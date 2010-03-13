@@ -22,10 +22,8 @@ class syntax_plugin_mozshot extends DokuWiki_Syntax_Plugin {
 			'desc'   => 'Inserts a website screenshot',
 			'url'    => 'http://wakuteka.info/main/dokuwiki:mozshot');
  	}
-	var $html;
 	var $pattern;
 	function syntax_plugin_mozshot(){
-		$this->html    = @file_get_contents(DOKU_PLUGIN.'mozshot/object.htm');
 		$this->pattern = '/\{\{(\s?)mozshot>(small|large|normal):([^} |]+)\|?(.*?)(\s?)\}\}/'; /* TODO: match http:// */
 	}
 
